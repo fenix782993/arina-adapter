@@ -6,31 +6,19 @@
     <title>MILISI | KAWAII HUB</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Стили для кастомного неонового курсора-лапки */
+        /* Стили кастомного курсора-лапки */
         body { cursor: none; }
         a, button, input { cursor: none; }
         #custom-cursor {
             width: 24px; height: 24px;
             position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999;
-            transition: transform 0.04s linear;
-            font-size: 20px; line-height: 24px; text-align: center;
+            transition: transform 0.04s linear; font-size: 20px; line-height: 24px; text-align: center;
         }
         .cyber-btn:hover ~ #custom-cursor, button:hover ~ #custom-cursor {
             transform: translate(-50%, -50%) scale(1.4);
         }
 
-        /* Эффект глитча и зума баннера */
-        .banner-container { overflow: hidden; position: relative; }
-        .main-banner:hover { animation: pinkGlitch 0.25s infinite; filter: saturate(1.5) contrast(1.1); transform: scale(1.03); }
-        @keyframes pinkGlitch {
-            0% { transform: translate(0) scale(1.03); }
-            25% { transform: translate(-2px, 1px) skewX(2deg) scale(1.03); }
-            50% { transform: translate(2px, -1px) skewX(-2deg) scale(1.03); filter: hue-rotate(-30deg) saturate(1.6); }
-            75% { transform: translate(-1px, -1px) scale(1.03); }
-            100% { transform: translate(0) scale(1.03); }
-        }
-
-        /* Музыкальный эквалайзер */
+        /* Эквалайзер */
         .audio-container {
             position: fixed; top: 20px; right: 20px; display: flex; align-items: center; gap: 12px;
             z-index: 1000; background: rgba(13, 4, 9, 0.8); padding: 8px 12px; border: 1px solid #ff85c0; border-radius: 8px;
@@ -95,29 +83,9 @@
                 <span class="btn-glitch">NEKO_CHANNEL</span>
             </a>
 
-            <a href="https://t.me/+-x9fbyWpSj85NmFl" target="_blank" class="cyber-btn" data-scramble="НАШ ЧАТ">
-                <span class="btn-text">НАШ ЧАТ</span>
-                <span class="btn-glitch">PINK_CHAT</span>
-            </a>
-
-            <a href="https://t.me/fenixVPNrobot" target="_blank" class="cyber-btn" data-scramble="КУПИТЬ VPN">
-                <span class="btn-text">КУПИТЬ VPN</span>
-                <span class="btn-glitch">GET_VPN_BOT</span>
-            </a>
-
-            <a href="https://t.me/Fenix_stars_bot" target="_blank" class="cyber-btn" data-scramble="КУПИТЬ ЗВЕЗДЫ">
-                <span class="btn-text">КУПИТЬ ЗВЕЗДЫ</span>
-                <span class="btn-glitch">STARS_ROBOT</span>
-            </a>
-
             <a href="https://www.tiktok.com/@milisi_69?_r=1&_t=ZT-977zfMzQVVG" target="_blank" class="cyber-btn btn-tiktok" data-scramble="МОЙ TIKTOK">
                 <span class="btn-text">МОЙ TIKTOK</span>
                 <span class="btn-glitch">TIKTOK_PROFILE 🔥</span>
-            </a>
-
-            <a href="https://t.me/webFenix" target="_blank" class="cyber-btn" data-scramble="ЧАТ СО МНОЙ">
-                <span class="btn-text">ЧАТ СО МНОЙ</span>
-                <span class="btn-glitch">CONTACT_ME</span>
             </a>
 
             <button id="like-trigger-btn" class="cyber-btn love-btn" data-scramble="ПОСТАВИТЬ ❤️">
@@ -143,14 +111,14 @@
     </div>
 
     <script>
-        // --- ЛОГИКА КАВАЙНОГО КУРСОРА ---
+        // --- ЛОГИКА КУРСОРА ---
         const cursor = document.getElementById('custom-cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        // --- ЖИВОЙ НЕОНОВЫЙ СЧЕТЧИК ---
+        // --- ЖИВОЙ СЧЕТЧИК ---
         let coinsCount = 742;
         const pingVal = document.getElementById('ping-val');
         const packetsVal = document.getElementById('packets-val');
@@ -163,8 +131,8 @@
         }
         updateStats();
 
-        // --- ЭФФЕКТ ХАКЕРСКОЙ РАСШИФРОВКИ НА РОЗОВЫХ КНОПКАХ ---
-        const charsList = '01🌸🎀🐾🐱⭐✨💖💝💟💘👾🍥';
+        // --- ЭФФЕКТ РАСШИФРОВКИ НА КНОПКАХ ---
+        const charsList = '01🌸🎀🐾💗✨⭐🐈🐾';
         
         document.querySelectorAll('.cyber-btn').forEach(btn => {
             const textNode = btn.querySelector('.btn-text');
@@ -196,7 +164,7 @@
             });
         });
 
-        // --- ЛОГИКА ОТПРАВКИ ЛАЙКА АДМИНУ ---
+        // --- МОДАЛКА ЛАЙКА ---
         const likeBtn = document.getElementById('like-trigger-btn');
         const modal = document.getElementById('custom-modal');
         const modalCancel = document.getElementById('modal-cancel');
@@ -217,7 +185,6 @@
             let nickname = nameInput.value.trim();
             if (!nickname) nickname = "KAWAII_NEKO";
 
-            // Генерация кавайного отчета для отправки в Телеграм
             const messageText = `🌸 [MILISI HUB REPORT] 🌸\n` +
                                 `========================\n` +
                                 `• USER_ID: ${nickname}\n` +
@@ -232,7 +199,7 @@
             window.open(telegramUrl, '_blank');
         });
 
-        // --- ФЕЙКОВЫЕ ЛОГИ ЗАГРУЗКИ ПОД НЕКО-СТИЛЬ ---
+        // --- ЛОГИ ЗАГРУЗКИ ---
         const logs = [
             "[SYSTEM] LOADING MILISI COZY OS v1.0...",
             "[ASSETS] GENERATING NEKO SPRITES...",
@@ -251,7 +218,7 @@
                 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                 const oscillator = audioCtx.createOscillator();
                 const gainNode = audioCtx.createGain();
-                oscillator.type = 'triangle'; /* Более мягкий кавайный звук */
+                oscillator.type = 'triangle';
                 oscillator.frequency.setValueAtTime(freq, audioCtx.currentTime);
                 gainNode.gain.setValueAtTime(0.04, audioCtx.currentTime);
                 oscillator.connect(gainNode);
@@ -275,7 +242,7 @@
         }
         window.addEventListener("load", showLogs);
 
-        // --- ВКЛЮЧЕНИЕ САЙТА И МУЗЫКИ ---
+        // --- ВКЛЮЧЕНИЕ САЙТА ---
         const bgMusic = document.getElementById("bg-music");
         const preloader = document.getElementById("preloader");
         const mainContent = document.getElementById("main-content");
@@ -290,7 +257,7 @@
                 bgMusic.volume = 0.3; 
                 bgMusic.play()
                     .then(() => equalizer.classList.add('playing'))
-                    .catch(() => console.log("Audio blocked by user browser settings"));
+                    .catch(() => console.log("Audio blocked"));
                 startTypewriter();
             }, 500);
         });
@@ -308,7 +275,6 @@
             playCuteBeep(650, 0.05);
         });
 
-        // --- СТРОКА ТЕРМИНАЛА ---
         const textToType = "NEKO_STATUS: ACTIVE | CONNECTED: ESTABLISHED_OK | WELCOME TO MILISI HUB";
         let typeIndex = 0;
         function startTypewriter() {
@@ -320,7 +286,7 @@
             }
         }
 
-        // --- КАНВАС: МАТРИЦА ИЗ СЕРДЕЧЕК, ИЕРОГЛИФОВ И ЛАПОК ---
+        // --- КАНВАС МАТРИЦЫ ---
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -333,18 +299,14 @@
         for(let x = 0; x < columns; x++) rainDrops[x] = Math.random() * -100;
         
         const draw = () => {
-            ctx.fillStyle = 'rgba(18, 10, 16, 0.08)'; /* Прозрачный шлейф розового */
+            ctx.fillStyle = 'rgba(15, 5, 11, 0.08)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
             ctx.font = fontSize + 'px monospace';
             for(let i = 0; i < rainDrops.length; i++) {
                 const text = symbols[Math.floor(Math.random() * symbols.length)];
-                
-                // Случайным образом делаем элементы ярче или белее
                 if (Math.random() > 0.95) ctx.fillStyle = '#fff';
                 else if (Math.random() > 0.7) ctx.fillStyle = '#ff2a85';
                 else ctx.fillStyle = '#ff85c0';
-                
                 ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
                 if(rainDrops[i] * fontSize > canvas.height && Math.random() > 0.98) rainDrops[i] = 0;
                 rainDrops[i]++;
