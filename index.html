@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MILISI | KAWAII HUB</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Стили для кастомного неонового курсора-лапки */
+        body { cursor: none; }
+        a, button, input { cursor: none; }
+        #custom-cursor {
+            width: 24px; height: 24px;
+            position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999;
+            transition: transform 0.04s linear;
+            font-size: 20px; line-height: 24px; text-align: center;
+        }
+        .cyber-btn:hover ~ #custom-cursor, button:hover ~ #custom-cursor {
+            transform: translate(-50%, -50%) scale(1.4);
+        }
+
+        /* Эффект глитча и зума баннера */
+        .banner-container { overflow: hidden; position: relative; }
+        .main-banner:hover { animation: pinkGlitch 0.25s infinite; filter: saturate(1.5) contrast(1.1); transform: scale(1.03); }
+        @keyframes pinkGlitch {
+            0% { transform: translate(0) scale(1.03); }
+            25% { transform: translate(-2px, 1px) skewX(2deg) scale(1.03); }
+            50% { transform: translate(2px, -1px) skewX(-2deg) scale(1.03); filter: hue-rotate(-30deg) saturate(1.6); }
+            75% { transform: translate(-1px, -1px) scale(1.03); }
+            100% { transform: translate(0) scale(1.03); }
+        }
+
+        /* Музыкальный эквалайзер */
+        .audio-container {
+            position: fixed; top: 20px; right: 20px; display: flex; align-items: center; gap: 12px;
+            z-index: 1000; background: rgba(13, 4, 9, 0.8); padding: 8px 12px; border: 1px solid #ff85c0; border-radius: 8px;
+        }
+        .equalizer { display: flex; align-items: flex-end; gap: 3px; width: 35px; height: 20px; }
+        .equalizer .bar { width: 3px; height: 100%; background-color: #ff52a2; transform-origin: bottom; transform: scaleY(0.1); }
+        .equalizer.playing .bar { animation: cuteBounce 0.7s ease infinite alternate; }
+        .equalizer.playing .bar:nth-child(2) { animation-delay: 0.15s; animation-duration: 0.5s; }
+        .equalizer.playing .bar:nth-child(3) { animation-delay: 0.3s; animation-duration: 0.8s; }
+        .equalizer.playing .bar:nth-child(4) { animation-delay: 0.1s; animation-duration: 0.6s; }
+        @keyframes cuteBounce { 0% { transform: scaleY(0.1); } 100% { transform: scaleY(1); } }
+    </style>
+</head>
+<body>
+
+    <div id="custom-cursor">🐾</div>
+
+    <audio id="bg-music" loop src="gotlibgotlibgotlib_SABU_-_agentstvo_nasiliya_81013550.mp3" preload="auto"></audio>
+
+    <div id="preloader">
+        <div class="loader-terminal">
+            <div id="log-container"></div>
+            <button id="start-btn" style="display: none;" class="cyber-btn">INITIALIZE CORE (CONNECT AUDIO) 🎧</button>
+        </div>
+    </div>
+
+    <canvas id="matrix"></canvas>
+
+    <div class="container main-content" id="main-content">
+        
+        <div class="audio-container">
+            <div class="equalizer" id="equalizer">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <button id="mute-toggle" class="mute-btn">💖 MUSIC ON</button>
+        </div>
+
+        <header class="banner-container">
+            <img src="banner.jpg" alt="Kawaii Banner" class="main-banner">
+        </header>
+
+        <div class="neko-container">
+            <div class="neko-sprite">(=•́ܫ•̀=)</div>
+            <div class="neko-sprite">(=👁️ܫ👁️=)🌸</div>
+            <div class="neko-sprite">(🐾^•ﻌ•^🐾)</div>
+        </div>
+
+        <div class="terminal-status">
+            <span class="blink"> > </span> 
+            <span id="typewriter"></span><span class="cursor">_</span>
+            <div id="live-counter" style="margin-top: 5px; color: #ff85c0; font-size: 0.9em; opacity: 0.8;">
+                CUTENESS_LEVEL: <span id="ping-val">999</span>% | COIN_MINED: <span id="packets-val">0</span> 🐾
+            </div>
+        </div>
+
+        <main class="links-grid">
+            <a href="https://t.me/+kmfB_A2C2boxMjU6" target="_blank" class="cyber-btn" data-scramble="ТГ КАНАЛ">
+                <span class="btn-text">ТГ КАНАЛ</span>
+                <span class="btn-glitch">NEKO_CHANNEL</span>
+            </a>
+
+            <a href="https://t.me/+-x9fbyWpSj85NmFl" target="_blank" class="cyber-btn" data-scramble="НАШ ЧАТ">
+                <span class="btn-text">НАШ ЧАТ</span>
+                <span class="btn-glitch">PINK_CHAT</span>
+            </a>
+
+            <a href="https://t.me/fenixVPNrobot" target="_blank" class="cyber-btn" data-scramble="КУПИТЬ VPN">
+                <span class="btn-text">КУПИТЬ VPN</span>
+                <span class="btn-glitch">GET_VPN_BOT</span>
+            </a>
+
+            <a href="https://t.me/Fenix_stars_bot" target="_blank" class="cyber-btn" data-scramble="КУПИТЬ ЗВЕЗДЫ">
+                <span class="btn-text">КУПИТЬ ЗВЕЗДЫ</span>
+                <span class="btn-glitch">STARS_ROBOT</span>
+            </a>
+
+            <a href="https://www.tiktok.com/@milisi_69?_r=1&_t=ZT-977zfMzQVVG" target="_blank" class="cyber-btn btn-tiktok" data-scramble="МОЙ TIKTOK">
+                <span class="btn-text">МОЙ TIKTOK</span>
+                <span class="btn-glitch">TIKTOK_PROFILE 🔥</span>
+            </a>
+
+            <a href="https://t.me/webFenix" target="_blank" class="cyber-btn" data-scramble="ЧАТ СО МНОЙ">
+                <span class="btn-text">ЧАТ СО МНОЙ</span>
+                <span class="btn-glitch">CONTACT_ME</span>
+            </a>
+
+            <button id="like-trigger-btn" class="cyber-btn love-btn" data-scramble="ПОСТАВИТЬ ❤️">
+                <span class="btn-text">ПОСТАВИТЬ ❤️</span>
+                <span class="btn-glitch">SEND_HEART_LUV</span>
+            </button>
+        </main>
+
+        <footer>
+            <p>© 2026 MILISI HUB. SYSTEM_STATUS: MAXIMUM_KAWAII. ACCESS_GRANTED.</p>
+        </footer>
+    </div>
+
+    <div id="custom-modal">
+        <div class="modal-box">
+            <div class="modal-title">[🌸] ENTER YOUR NICKNAME / AGENT_ID:</div>
+            <input type="text" id="rebel-name-input" class="modal-input" placeholder="Твой ник котик..." maxlength="20">
+            <div class="modal-buttons">
+                <button id="modal-cancel" class="modal-btn">CLOSE</button>
+                <button id="modal-submit" class="modal-btn confirm">SEND ❤️</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- ЛОГИКА КАВАЙНОГО КУРСОРА ---
+        const cursor = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // --- ЖИВОЙ НЕОНОВЫЙ СЧЕТЧИК ---
+        let coinsCount = 742;
+        const pingVal = document.getElementById('ping-val');
+        const packetsVal = document.getElementById('packets-val');
+
+        function updateStats() {
+            pingVal.textContent = Math.floor(Math.random() * (100 - 95 + 1)) + 95;
+            coinsCount += Math.floor(Math.random() * 2) + 1;
+            packetsVal.textContent = coinsCount;
+            setTimeout(updateStats, Math.random() * 800 + 400);
+        }
+        updateStats();
+
+        // --- ЭФФЕКТ ХАКЕРСКОЙ РАСШИФРОВКИ НА РОЗОВЫХ КНОПКАХ ---
+        const charsList = '01🌸🎀🐾🐱⭐✨💖💝💟💘👾🍥';
+        
+        document.querySelectorAll('.cyber-btn').forEach(btn => {
+            const textNode = btn.querySelector('.btn-text');
+            const originalText = btn.getAttribute('data-scramble');
+            let interval = null;
+
+            btn.addEventListener('mouseenter', () => {
+                let iteration = 0;
+                clearInterval(interval);
+                
+                interval = setInterval(() => {
+                    textNode.innerText = originalText
+                        .split("")
+                        .map((letter, index) => {
+                            if(index < iteration) return originalText[index];
+                            return charsList[Math.floor(Math.random() * charsList.length)];
+                        })
+                        .join("");
+                    if(iteration >= originalText.length) clearInterval(interval);
+                    iteration += 1 / 3;
+                }, 30);
+                cursor.textContent = "🌸";
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                clearInterval(interval);
+                textNode.innerText = originalText;
+                cursor.textContent = "🐾";
+            });
+        });
+
+        // --- ЛОГИКА ОТПРАВКИ ЛАЙКА АДМИНУ ---
+        const likeBtn = document.getElementById('like-trigger-btn');
+        const modal = document.getElementById('custom-modal');
+        const modalCancel = document.getElementById('modal-cancel');
+        const modalSubmit = document.getElementById('modal-submit');
+        const nameInput = document.getElementById('rebel-name-input');
+
+        likeBtn.addEventListener('click', () => {
+            nameInput.value = '';
+            modal.classList.add('open');
+        });
+
+        modalCancel.addEventListener('click', () => {
+            modal.classList.remove('open');
+            playCuteBeep(350, 0.08);
+        });
+
+        modalSubmit.addEventListener('click', () => {
+            let nickname = nameInput.value.trim();
+            if (!nickname) nickname = "KAWAII_NEKO";
+
+            // Генерация кавайного отчета для отправки в Телеграм
+            const messageText = `🌸 [MILISI HUB REPORT] 🌸\n` +
+                                `========================\n` +
+                                `• USER_ID: ${nickname}\n` +
+                                `• STYLE: PINK NEKO CORE 💞\n` +
+                                `• STATUS: COZY AND CUTE 🔥\n` +
+                                `========================\n` +
+                                `Сайтик просто нереальный! Розовый неоновый стиль, котики и музыка — полный восторг и эстетика! Лови огромный респект и сочный лайк! 🎀🐾✨`;
+
+            const telegramUrl = `https://t.me/webFenix?text=${encodeURIComponent(messageText)}`;
+            modal.classList.remove('open');
+            playCuteBeep(900, 0.15);
+            window.open(telegramUrl, '_blank');
+        });
+
+        // --- ФЕЙКОВЫЕ ЛОГИ ЗАГРУЗКИ ПОД НЕКО-СТИЛЬ ---
+        const logs = [
+            "[SYSTEM] LOADING MILISI COZY OS v1.0...",
+            "[ASSETS] GENERATING NEKO SPRITES...",
+            "[AUDIO] CACHING 'AGENCY OF VIOLENCE' TRACK...",
+            "[THEME] INJECTING NEON PINK PALETTE...",
+            "[STATUS] NEKO SYSTEM STARTED SUCCESSFULLY.",
+            "ALL CUTE SYSTEMS ARE ONLINE..."
+        ];
+        
+        const logContainer = document.getElementById("log-container");
+        const startBtn = document.getElementById("start-btn");
+        let logIndex = 0;
+
+        function playCuteBeep(freq = 523, duration = 0.05) {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                oscillator.type = 'triangle'; /* Более мягкий кавайный звук */
+                oscillator.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gainNode.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        function showLogs() {
+            if (logIndex < logs.length) {
+                const p = document.createElement("p");
+                p.textContent = logs[logIndex];
+                logContainer.appendChild(p);
+                playCuteBeep(700, 0.03);
+                logIndex++;
+                setTimeout(showLogs, 350);
+            } else {
+                startBtn.style.display = "block";
+            }
+        }
+        window.addEventListener("load", showLogs);
+
+        // --- ВКЛЮЧЕНИЕ САЙТА И МУЗЫКИ ---
+        const bgMusic = document.getElementById("bg-music");
+        const preloader = document.getElementById("preloader");
+        const mainContent = document.getElementById("main-content");
+        const muteToggle = document.getElementById("mute-toggle");
+        const equalizer = document.getElementById("equalizer");
+
+        startBtn.addEventListener("click", () => {
+            preloader.style.opacity = "0";
+            setTimeout(() => {
+                preloader.style.display = "none";
+                mainContent.classList.add("active");
+                bgMusic.volume = 0.3; 
+                bgMusic.play()
+                    .then(() => equalizer.classList.add('playing'))
+                    .catch(() => console.log("Audio blocked by user browser settings"));
+                startTypewriter();
+            }, 500);
+        });
+
+        muteToggle.addEventListener("click", () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                equalizer.classList.add('playing');
+                muteToggle.textContent = "💖 MUSIC ON";
+            } else {
+                bgMusic.pause();
+                equalizer.classList.remove('playing');
+                muteToggle.textContent = "🔇 MUTED";
+            }
+            playCuteBeep(650, 0.05);
+        });
+
+        // --- СТРОКА ТЕРМИНАЛА ---
+        const textToType = "NEKO_STATUS: ACTIVE | CONNECTED: ESTABLISHED_OK | WELCOME TO MILISI HUB";
+        let typeIndex = 0;
+        function startTypewriter() {
+            if (typeIndex < textToType.length) {
+                document.getElementById("typewriter").textContent += textToType.charAt(typeIndex);
+                if(Math.random() > 0.4) playCuteBeep(880, 0.01); 
+                typeIndex++;
+                setTimeout(startTypewriter, 45);
+            }
+        }
+
+        // --- КАНВАС: МАТРИЦА ИЗ СЕРДЕЧЕК, ИЕРОГЛИФОВ И ЛАПОК ---
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const symbols = '01🌸🎀🐾💗✨⭐🐈🐾'.split('');
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const rainDrops = [];
+        for(let x = 0; x < columns; x++) rainDrops[x] = Math.random() * -100;
+        
+        const draw = () => {
+            ctx.fillStyle = 'rgba(18, 10, 16, 0.08)'; /* Прозрачный шлейф розового */
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < rainDrops.length; i++) {
+                const text = symbols[Math.floor(Math.random() * symbols.length)];
+                
+                // Случайным образом делаем элементы ярче или белее
+                if (Math.random() > 0.95) ctx.fillStyle = '#fff';
+                else if (Math.random() > 0.7) ctx.fillStyle = '#ff2a85';
+                else ctx.fillStyle = '#ff85c0';
+                
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+                if(rainDrops[i] * fontSize > canvas.height && Math.random() > 0.98) rainDrops[i] = 0;
+                rainDrops[i]++;
+            }
+        };
+        setInterval(draw, 35);
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
