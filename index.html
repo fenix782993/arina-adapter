@@ -21,7 +21,7 @@
         /* Эквалайзер */
         .audio-container {
             position: fixed; top: 20px; right: 20px; display: flex; align-items: center; gap: 12px;
-            z-index: 1000; background: rgba(13, 4, 9, 0.8); padding: 8px 12px; border: 1px solid #ff85c0; border-radius: 8px;
+            z-index: 1000; background: rgba(13, 4, 9, 0.8); padding: 8px 12px; border: 2px solid #ff85c0; border-radius: 8px;
         }
         .equalizer { display: flex; align-items: flex-end; gap: 3px; width: 35px; height: 20px; }
         .equalizer .bar { width: 3px; height: 100%; background-color: #ff52a2; transform-origin: bottom; transform: scaleY(0.1); }
@@ -87,27 +87,11 @@
                 <span class="btn-text">МОЙ TIKTOK</span>
                 <span class="btn-glitch">TIKTOK_PROFILE 🔥</span>
             </a>
-
-            <button id="like-trigger-btn" class="cyber-btn love-btn" data-scramble="ПОСТАВИТЬ ❤️">
-                <span class="btn-text">ПОСТАВИТЬ ❤️</span>
-                <span class="btn-glitch">SEND_HEART_LUV</span>
-            </button>
         </main>
 
         <footer>
             <p>© 2026 MILISI HUB. SYSTEM_STATUS: MAXIMUM_KAWAII. ACCESS_GRANTED.</p>
         </footer>
-    </div>
-
-    <div id="custom-modal">
-        <div class="modal-box">
-            <div class="modal-title">[🌸] ENTER YOUR NICKNAME / AGENT_ID:</div>
-            <input type="text" id="rebel-name-input" class="modal-input" placeholder="Твой ник котик..." maxlength="20">
-            <div class="modal-buttons">
-                <button id="modal-cancel" class="modal-btn">CLOSE</button>
-                <button id="modal-submit" class="modal-btn confirm">SEND ❤️</button>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -162,41 +146,6 @@
                 textNode.innerText = originalText;
                 cursor.textContent = "🐾";
             });
-        });
-
-        // --- МОДАЛКА ЛАЙКА ---
-        const likeBtn = document.getElementById('like-trigger-btn');
-        const modal = document.getElementById('custom-modal');
-        const modalCancel = document.getElementById('modal-cancel');
-        const modalSubmit = document.getElementById('modal-submit');
-        const nameInput = document.getElementById('rebel-name-input');
-
-        likeBtn.addEventListener('click', () => {
-            nameInput.value = '';
-            modal.classList.add('open');
-        });
-
-        modalCancel.addEventListener('click', () => {
-            modal.classList.remove('open');
-            playCuteBeep(350, 0.08);
-        });
-
-        modalSubmit.addEventListener('click', () => {
-            let nickname = nameInput.value.trim();
-            if (!nickname) nickname = "KAWAII_NEKO";
-
-            const messageText = `🌸 [MILISI HUB REPORT] 🌸\n` +
-                                `========================\n` +
-                                `• USER_ID: ${nickname}\n` +
-                                `• STYLE: PINK NEKO CORE 💞\n` +
-                                `• STATUS: COZY AND CUTE 🔥\n` +
-                                `========================\n` +
-                                `Сайтик просто нереальный! Розовый неоновый стиль, котики и музыка — полный восторг и эстетика! Лови огромный респект и сочный лайк! 🎀🐾✨`;
-
-            const telegramUrl = `https://t.me/webFenix?text=${encodeURIComponent(messageText)}`;
-            modal.classList.remove('open');
-            playCuteBeep(900, 0.15);
-            window.open(telegramUrl, '_blank');
         });
 
         // --- ЛОГИ ЗАГРУЗКИ ---

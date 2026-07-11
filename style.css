@@ -1,13 +1,14 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #0f050b; /* Еще более глубокий и сочный темный фон */
-    color: #ff85c0; /* Основной неоново-розовый цвет текста */
+    background-color: #0f050b;
+    color: #ff85c0;
     font-family: 'Courier New', Courier, monospace;
+    font-weight: bold; /* Делаем абсолютно весь текст на сайте жирным */
     overflow-x: hidden;
 }
 
-/* Эффект Матрицы из сердечек и лапок */
+/* Матрица на фоне */
 #matrix {
     position: fixed;
     top: 0;
@@ -18,7 +19,7 @@ body {
     opacity: 0.25; 
 }
 
-/* ЭКРАН ЗАГРУЗКИ (ПРЕЛОАДЕР) */
+/* ЭКРАН ЗАГРУЗКИ */
 #preloader {
     position: fixed;
     top: 0;
@@ -39,7 +40,7 @@ body {
     width: 100%;
     max-width: 550px;
     background: rgba(20, 5, 15, 0.95);
-    border: 2px solid #ff85c0;
+    border: 3px solid #ff85c0; /* Более жирная рамка */
     box-shadow: 0 0 35px rgba(255, 133, 192, 0.3);
     padding: 25px;
     border-radius: 16px;
@@ -49,10 +50,11 @@ body {
 #log-container p {
     margin: 8px 0;
     font-size: 14px;
+    font-weight: bold;
     letter-spacing: 1px;
     white-space: nowrap;
     overflow: hidden;
-    border-right: 2px solid #ff85c0;
+    border-right: 3px solid #ff85c0;
     animation: typeLine 0.15s steps(30, end) forwards;
 }
 
@@ -61,12 +63,12 @@ body {
     to { width: 100%; border-color: transparent; }
 }
 
-/* Мигающая кнопка старта */
 #start-btn {
     width: 100%;
     margin-top: 20px;
     border-color: #ff52a2;
     color: #ff52a2;
+    font-weight: bold;
     box-shadow: 0 0 15px rgba(255, 82, 162, 0.2);
 }
 #start-btn:hover {
@@ -100,14 +102,14 @@ body {
     box-sizing: border-box;
 }
 
-/* Кнопка звука */
 .mute-btn {
     position: absolute;
     top: 10px;
     right: 20px;
     background: transparent;
-    border: 1px solid #ff85c0;
+    border: 2px solid #ff85c0;
     color: #ff85c0;
+    font-weight: bold;
     padding: 6px 14px;
     cursor: pointer;
     font-family: monospace;
@@ -121,4 +123,139 @@ body {
     background: #ff85c0;
     color: #fff;
     box-shadow: 0 0 15px #ff85c0;
+}
+
+/* Баннер без тряски с красивой неоновой рамкой */
+.banner-container {
+    width: 100%;
+    max-width: 480px;
+    border: 3px solid #ff85c0;
+    box-shadow: 0 0 25px rgba(255, 133, 192, 0.3);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 40px;
+    margin-bottom: 25px;
+    background: #000;
+    transition: all 0.3s ease;
+}
+
+.banner-container:hover {
+    border-color: #ff52a2;
+    box-shadow: 0 0 40px rgba(255, 82, 162, 0.6);
+    transform: scale(1.02);
+}
+
+.main-banner {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Строка терминала */
+.terminal-status {
+    background: rgba(20, 7, 16, 0.9);
+    border: 2px solid #ff85c0;
+    box-shadow: inset 0 0 15px rgba(255, 133, 192, 0.15);
+    border-radius: 10px;
+    padding: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    min-height: 43px;
+}
+
+.blink { animation: hackBlink 1s infinite; }
+.cursor { animation: hackBlink 0.7s infinite; color: #ff52a2; font-weight: bold; }
+@keyframes hackBlink { 50% { opacity: 0; } }
+
+/* СЕТКА КНОПОК: СТРОГО В ОДИН РЯД (2 СТОЛБЦА) */
+.links-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Две кнопки встают строго в один ряд */
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.cyber-btn {
+    position: relative;
+    background: rgba(25, 8, 20, 0.75);
+    border: 2px solid #ff85c0;
+    color: #ff85c0;
+    padding: 22px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 900; /* Экстра-жирный шрифт на кнопках */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: inset 0 0 10px rgba(255, 133, 192, 0.1);
+}
+
+.cyber-btn:hover {
+    background: #ff85c0;
+    color: #fff;
+    box-shadow: 0 0 25px rgba(255, 133, 192, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Индивидуальный неоновый стиль для TikTok */
+.cyber-btn.btn-tiktok {
+    border-color: #00f2fe;
+    color: #00f2fe;
+    box-shadow: inset 0 0 10px rgba(0, 242, 254, 0.1);
+}
+.cyber-btn.btn-tiktok:hover {
+    background: #00f2fe;
+    color: #000;
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.6);
+}
+
+.btn-glitch { display: none; }
+.cyber-btn:hover .btn-text { display: none; }
+.cyber-btn:hover .btn-glitch { display: inline; }
+
+footer {
+    margin-top: auto;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    color: #7a3d59;
+    letter-spacing: 1px;
+}
+
+/* АНИМАЦИЯ КОТИКОВ */
+.neko-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    margin-bottom: -8px;
+    z-index: 3;
+    pointer-events: none;
+}
+.neko-sprite {
+    font-size: 24px;
+    font-weight: bold;
+    animation: nekoDance 1.2s infinite alternate ease-in-out;
+}
+.neko-sprite:nth-child(2) { animation-delay: 0.3s; }
+.neko-sprite:nth-child(3) { animation-delay: 0.6s; }
+@keyframes nekoDance {
+    0% { transform: translateY(0) rotate(-4deg); }
+    100% { transform: translateY(-6px) rotate(4deg); }
+}
+
+/* Адаптивность для узких экранов мобильных (кнопки остаются в ряд) */
+@media (max-width: 400px) {
+    .cyber-btn {
+        font-size: 13px;
+        padding: 18px 5px;
+    }
 }
