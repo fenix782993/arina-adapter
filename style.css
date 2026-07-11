@@ -1,13 +1,13 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #120a10; /* Темно-черничный/розовый оттенок фона */
+    background-color: #0f050b; /* Еще более глубокий и сочный темный фон */
     color: #ff85c0; /* Основной неоново-розовый цвет текста */
     font-family: 'Courier New', Courier, monospace;
     overflow-x: hidden;
 }
 
-/* Эффект Матрицы / Падающих сердечек и лапок */
+/* Эффект Матрицы из сердечек и лапок */
 #matrix {
     position: fixed;
     top: 0;
@@ -15,7 +15,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: 1;
-    opacity: 0.3; 
+    opacity: 0.25; 
 }
 
 /* ЭКРАН ЗАГРУЗКИ (ПРЕЛОАДЕР) */
@@ -25,7 +25,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: #0d0409;
+    background: #070205;
     z-index: 9999;
     display: flex;
     justify-content: center;
@@ -37,12 +37,12 @@ body {
 
 .loader-terminal {
     width: 100%;
-    max-width: 600px;
+    max-width: 550px;
     background: rgba(20, 5, 15, 0.95);
     border: 2px solid #ff85c0;
     box-shadow: 0 0 35px rgba(255, 133, 192, 0.3);
     padding: 25px;
-    border-radius: 12px;
+    border-radius: 16px;
     text-align: left;
 }
 
@@ -78,8 +78,8 @@ body {
 /* ОСНОВНОЙ КОНТЕНТ */
 .main-content {
     opacity: 0;
-    transform: scale(0.95) translateY(20px);
-    transition: all 1s cubic-bezier(0.1, 1, 0.1, 1);
+    transform: scale(0.97) translateY(15px);
+    transition: all 0.8s cubic-bezier(0.1, 1, 0.1, 1);
 }
 
 .main-content.active {
@@ -90,7 +90,7 @@ body {
 .container {
     position: relative;
     z-index: 2;
-    max-width: 700px;
+    max-width: 650px;
     margin: 0 auto;
     padding: 20px;
     display: flex;
@@ -108,12 +108,12 @@ body {
     background: transparent;
     border: 1px solid #ff85c0;
     color: #ff85c0;
-    padding: 6px 12px;
+    padding: 6px 14px;
     cursor: pointer;
     font-family: monospace;
     font-size: 12px;
     z-index: 10;
-    border-radius: 6px;
+    border-radius: 8px;
     transition: all 0.2s;
 }
 
@@ -121,229 +121,4 @@ body {
     background: #ff85c0;
     color: #fff;
     box-shadow: 0 0 15px #ff85c0;
-}
-
-/* Контейнер баннера */
-.banner-container {
-    width: 100%;
-    max-width: 500px;
-    border: 3px solid #ff85c0;
-    box-shadow: 0 0 30px rgba(255, 133, 192, 0.4);
-    border-radius: 16px;
-    overflow: hidden;
-    margin-top: 35px;
-    margin-bottom: 20px;
-    background: #000;
-}
-
-.main-banner {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-/* Бегущая строка статуса */
-.terminal-status {
-    background: rgba(25, 10, 20, 0.85);
-    border: 1px solid #ff85c0;
-    box-shadow: inset 0 0 10px rgba(255, 133, 192, 0.2);
-    border-radius: 8px;
-    padding: 12px;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 25px;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    min-height: 43px;
-}
-
-.blink { animation: hackBlink 1s infinite; }
-.cursor { animation: hackBlink 0.7s infinite; color: #ff52a2; font-weight: bold; }
-@keyframes hackBlink { 50% { opacity: 0; } }
-
-/* СЕТКА КНОПОК */
-.links-grid {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.cyber-btn {
-    position: relative;
-    background: rgba(20, 5, 15, 0.65);
-    border: 2px solid #ff85c0;
-    color: #ff85c0;
-    padding: 18px 15px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-    border-radius: 10px;
-    box-shadow: inset 0 0 10px rgba(255, 133, 192, 0.1);
-}
-
-.cyber-btn:hover {
-    background: #ff85c0;
-    color: #fff;
-    box-shadow: 0 0 25px rgba(255, 133, 192, 0.6);
-    transform: translateY(-2px);
-}
-
-/* Выравнивание кнопок на всю ширину (TikTok и Поставить Сердечко) */
-.btn-tiktok, .love-btn {
-    grid-column: span 2;
-}
-
-/* Особый стиль для кнопки TikTok */
-.cyber-btn.btn-tiktok {
-    border-color: #00f2fe;
-    color: #00f2fe;
-    box-shadow: inset 0 0 10px rgba(0, 242, 254, 0.1);
-}
-.cyber-btn.btn-tiktok:hover {
-    background: #00f2fe;
-    color: #000;
-    box-shadow: 0 0 30px rgba(0, 242, 254, 0.7);
-}
-
-/* Стиль для кнопки ЛАЙК/СЕРДЕЧКО */
-.cyber-btn.love-btn {
-    border-color: #ff2a85;
-    color: #ff2a85;
-}
-.cyber-btn.love-btn:hover {
-    background: #ff2a85;
-    color: #fff;
-    box-shadow: 0 0 30px #ff2a85;
-}
-
-.btn-glitch { display: none; }
-.cyber-btn:hover .btn-text { display: none; }
-.cyber-btn:hover .btn-glitch { display: inline; }
-
-footer {
-    margin-top: auto;
-    text-align: center;
-    font-size: 11px;
-    color: #7a3d59;
-    letter-spacing: 1px;
-}
-
-/* Адаптивность для телефонов */
-@media (max-width: 600px) {
-    .links-grid { grid-template-columns: 1fr; }
-    .btn-tiktok, .love-btn { grid-column: span 1; }
-    .mute-btn { top: 5px; right: 10px; }
-    .loader-terminal { padding: 15px; }
-}
-
-/* КАВАЙНЫЕ НЕКО-АНИМАЦИИ (КОТИКИ) */
-.neko-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 10px;
-    margin-bottom: -10px;
-    z-index: 3;
-    pointer-events: none;
-}
-.neko-sprite {
-    font-size: 24px;
-    animation: nekoDance 1.2s infinite alternate ease-in-out;
-}
-.neko-sprite:nth-child(2) {
-    animation-delay: 0.3s;
-}
-@keyframes nekoDance {
-    0% { transform: translateY(0) rotate(-5deg); }
-    100% { transform: translateY(-8px) rotate(5deg); }
-}
-
-/* НЕОНОВОЕ МОДАЛЬНОЕ ОКНО */
-#custom-modal {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(13, 4, 9, 0.85);
-    z-index: 10000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-#custom-modal.open {
-    opacity: 1;
-    pointer-events: auto;
-}
-.modal-box {
-    background: rgba(25, 10, 20, 0.95);
-    border: 2px solid #ff2a85;
-    box-shadow: 0 0 30px rgba(255, 42, 133, 0.4);
-    padding: 30px;
-    width: 90%;
-    max-width: 420px;
-    text-align: center;
-    color: #ff2a85;
-    border-radius: 16px;
-}
-.modal-title {
-    font-size: 1.1em;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-    font-weight: bold;
-}
-.modal-input {
-    width: 100%;
-    background: #050103;
-    border: 1px solid #ff85c0;
-    color: #ff85c0;
-    padding: 12px;
-    font-size: 16px;
-    font-family: monospace;
-    text-align: center;
-    outline: none;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-    border-radius: 8px;
-}
-.modal-input:focus {
-    border-color: #ff2a85;
-    box-shadow: 0 0 10px rgba(255, 42, 133, 0.3);
-}
-.modal-buttons {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-}
-.modal-btn {
-    background: transparent;
-    border: 1px solid #ff2a85;
-    color: #ff2a85;
-    padding: 10px 20px;
-    font-family: monospace;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.2s;
-}
-.modal-btn:hover {
-    background: #ff2a85;
-    color: #fff;
-}
-.modal-btn.confirm {
-    border-color: #ff85c0;
-    color: #ff85c0;
-}
-.modal-btn.confirm:hover {
-    background: #ff85c0;
-    color: #fff;
 }
